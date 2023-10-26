@@ -45,19 +45,19 @@ async function createApp(preference: 'webgl' | 'webgpu'){
 (async () => {
     const app = await createApp('webgpu');
 
-    Assets.add({alias: 'modelskel', src: 'https://viewer.shinycolors.moe/spine/idols/stand/1040210030/data.json'});
-    Assets.add({alias: 'modelatlas', src: 'https://viewer.shinycolors.moe/spine/idols/stand/1040210030/data.atlas'});
+    Assets.add({alias: 'modelskel', src: 'https://raw.githubusercontent.com/nan0521/WDS-Adv-Resource/main/spine/10101.skel'});
+    Assets.add({alias: 'modelatlas', src: 'https://raw.githubusercontent.com/nan0521/WDS-Adv-Resource/main/spine/10101.atlas'});
 
     await Assets.load(['modelskel', 'modelatlas'])
 
     const model = Spine.from({
         skeleton : 'modelskel',
         atlas : 'modelatlas',
-        scale : 0.25
+        scale : 0.2
     })
 
-    model.x = 1136/2;
-    model.y = 640/2;
+    model.x = app.screen.width/2;
+    model.y = app.screen.height/2;
 
     app.stage.addChild(model);
 })()
