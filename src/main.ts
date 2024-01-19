@@ -1,5 +1,5 @@
 import { Assets, Application} from 'pixi.js';
-import { Spine } from '@play-co/spine'
+import { Spine } from '@pixi/spine-pixi'
 
 async function createApp(preference: 'webgl' | 'webgpu'){
     const app = new Application();
@@ -8,8 +8,8 @@ async function createApp(preference: 'webgl' | 'webgpu'){
         preference,
         backgroundAlpha: 1,
         backgroundColor: 0x999999,
-        width: 1136,
-        height: 640,
+        width: 1334,
+        height: 750,
         antialias: true,
         hello : true,
     });
@@ -27,10 +27,10 @@ async function createApp(preference: 'webgl' | 'webgpu'){
         let height = document.documentElement.clientHeight;
         let width = document.documentElement.clientWidth;
 
-        let ratio = Math.min(width / 1136, height / 640);
+        let ratio = Math.min(width / 1334, height / 750);
 
-        let resizedX = 1136 * ratio;
-        let resizedY = 640 * ratio;
+        let resizedX = 1334 * ratio;
+        let resizedY = 750 * ratio;
 
         app.canvas.style!.width = resizedX + 'px';
         app.canvas.style!.height = resizedY + 'px';
@@ -45,8 +45,8 @@ async function createApp(preference: 'webgl' | 'webgpu'){
 (async () => {
     const app = await createApp('webgpu');
 
-    Assets.add({alias: 'modelskel', src: 'https://raw.githubusercontent.com/nan0521/WDS-Adv-Resource/main/spine/10101.skel'});
-    Assets.add({alias: 'modelatlas', src: 'https://raw.githubusercontent.com/nan0521/WDS-Adv-Resource/main/spine/10101.atlas'});
+    Assets.add({alias: 'modelskel', src: 'https://raw.githubusercontent.com/nan0521/WDS-Adv-Resource/main/spine/10201.skel'});
+    Assets.add({alias: 'modelatlas', src: 'https://raw.githubusercontent.com/nan0521/WDS-Adv-Resource/main/spine/10201.atlas'});
 
     await Assets.load(['modelskel', 'modelatlas'])
 
@@ -57,7 +57,7 @@ async function createApp(preference: 'webgl' | 'webgpu'){
     })
 
     model.x = app.screen.width/2;
-    model.y = app.screen.height/2;
+    model.y = 620;
 
     app.stage.addChild(model);
 })()
