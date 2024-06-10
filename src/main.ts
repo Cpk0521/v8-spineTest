@@ -1,4 +1,4 @@
-import { Assets, Application} from 'pixi.js';
+import { Assets, Application } from 'pixi.js';
 import { Spine } from '@pixi/spine-pixi'
 
 async function createApp(preference: 'webgl' | 'webgpu'){
@@ -45,10 +45,15 @@ async function createApp(preference: 'webgl' | 'webgpu'){
 (async () => {
     const app = await createApp('webgpu');
 
-    Assets.add({alias: 'modelskel', src: 'https://raw.githubusercontent.com/nan0521/WDS-Adv-Resource/main/spine/10201.skel'});
-    Assets.add({alias: 'modelatlas', src: 'https://raw.githubusercontent.com/nan0521/WDS-Adv-Resource/main/spine/10201.atlas'});
+    await Assets.load([
+        {alias: 'modelskel', src: 'https://raw.githubusercontent.com/nan0521/WDS-Adv-Resource/main/spine/10201.skel'},
+        {alias: 'modelatlas', src: 'https://raw.githubusercontent.com/nan0521/WDS-Adv-Resource/main/spine/10201.atlas'}
+    ])
 
-    await Assets.load(['modelskel', 'modelatlas'])
+    // await Assets.load([
+    //     {alias: 'modelskel', src: './spineboy-pro.json'},
+    //     {alias: 'modelatlas', src: './spineboy-pma.atlas'}
+    // ])
 
     const model = Spine.from({
         skeleton : 'modelskel',
@@ -56,7 +61,7 @@ async function createApp(preference: 'webgl' | 'webgpu'){
         scale : 0.2
     })
 
-    model.x = app.screen.width/2;
+    model.x = app.screen.width / 2;
     model.y = 620;
 
     app.stage.addChild(model);
