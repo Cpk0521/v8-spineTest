@@ -1,5 +1,5 @@
 import { Assets, Application } from 'pixi.js';
-import { Spine } from '@pixi/spine-pixi'
+import { Spine } from '@pixi/spine-pixi';
 
 async function createApp(preference: 'webgl' | 'webgpu'){
     const app = new Application();
@@ -58,11 +58,11 @@ async function createApp(preference: 'webgl' | 'webgpu'){
     const model = Spine.from({
         skeleton : 'modelskel',
         atlas : 'modelatlas',
-        scale : 0.2
+        scale : 0.5
     })
 
     model.x = app.screen.width / 2;
-    model.y = 620;
+    model.y = 1305;
 
     app.stage.addChild(model);
 })()
